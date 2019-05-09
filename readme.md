@@ -1,4 +1,55 @@
-Useful links:
+### Not implemented ###
+* Removing libraries (Unuse button)
+* Verbose output
+
+### Overview ###
+Library Manager shows current library configuration state for all project configurations (e. g. Release|x64) and modifies Additional Include Directories, Additional Library Directories and Additional Dependencies with one click.
+
+To use Library Manager you should define library pack files, with configuration for each library. The format is:
+```xml
+<LibraryPack>
+	<Library>
+		<Name>fmt</Name>
+		<IncludePath>fmt\include</IncludePath>
+		<LibPath>fmt\lib</LibPath>
+		<Condition Configuration="Debug" Platform="x64">
+			<Lib>fmtd.lib</Lib>
+		</Condition>
+		<Condition Configuration="Release" Platform="x64">
+			<Lib>fmt.lib</Lib>
+		</Condition>
+	</Library>
+	<Library>
+		<Name>OpenCV</Name>
+		<IncludePath>opencv\include</IncludePath>
+		<LibPath>opencv\x64\vc15\lib</LibPath>
+		<Lib>opencv_calib3d410.lib</Lib>
+		<Lib>opencv_core410.lib</Lib>
+		<Lib>opencv_dnn410.lib</Lib>
+		<Lib>opencv_features2d410.lib</Lib>
+		<Condition Configuration="Release" Platform="x64"></Condition>
+		<Condition Configuration="Debug" Platform="x64"></Condition>
+	</Library>
+	<Library>
+		<Name>spdlog</Name>
+		<IncludePath>spdlog-1.x\include</IncludePath>
+		<Condition Configuration="Release" Platform="x64"></Condition>
+		<Condition Configuration="Debug" Platform="x64"></Condition>
+		<Condition Configuration="Release" Platform="x86"></Condition>
+		<Condition Configuration="Debug" Platform="x86"></Condition>
+	</Library>
+</LibraryPack>
+```
+
+`Lib` and `LibPath` can appear more than once inside `Library` or `Configuration` tags. There should be a `Configuration` tag for each supported configuration. `Lib` and `LibPath` may be omitted if the library is header only.
+
+Library pack files should be added in Tools->Options->Library Manager options page.
+![Library Manager Options screenshot](https://raw.githubusercontent.com/cos-public/LibManager/doc/options.png)
+
+To view current library configurations - right click on a project in solution explorer and choose 'Libraries...'
+![Library Manager Dialog screenshot](https://raw.githubusercontent.com/cos-public/LibManager/doc/manager.png)
+
+### Useful VSIX development links ###
 
 https://github.com/Microsoft/VSSDK-Extensibility-Samples/tree/master/Options
 
