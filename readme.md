@@ -44,10 +44,10 @@ To use Library Manager you should define library pack files, with configuration 
 `Lib` and `LibPath` can appear more than once inside `Library` or `Configuration` tags. There should be a `Configuration` tag for each supported configuration. `Lib` and `LibPath` may be omitted if the library is header only.
 
 Library pack files should be added in Tools->Options->Library Manager options page.
-![Library Manager Options screenshot](https://raw.githubusercontent.com/cos-public/LibManager/doc/options.png)
+![Library Manager Options screenshot](https://raw.githubusercontent.com/cos-public/LibManager/master/doc/options.png)
 
 To view current library configurations - right click on a project in solution explorer and choose 'Libraries...'
-![Library Manager Dialog screenshot](https://raw.githubusercontent.com/cos-public/LibManager/doc/manager.png)
+![Library Manager Dialog screenshot](https://raw.githubusercontent.com/cos-public/LibManager/master/doc/manager.png)
 
 ### Useful VSIX development links ###
 
