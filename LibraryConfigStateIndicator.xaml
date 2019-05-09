@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="LibManager.LibraryConfigStateIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LibManager"
+             mc:Ignorable="d"
+             d:DesignHeight="110.193" d:DesignWidth="468.878"
+             Visibility="Hidden">
+    <UserControl.Resources>
+        <Style x:Key="AllConfiguredStyle">
+            <Setter Property="TextBlock.Background" Value="Green" />
+            <Setter Property="TextBlock.Foreground" Value="White" />
+        </Style>
+        <Style x:Key="PartialConfiguredStyle">
+            <Setter Property="TextBlock.Background" Value="Blue" />
+            <Setter Property="TextBlock.Foreground" Value="White" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto">
+        <TextBlock x:Name="ContainsIncludePath" Text="I" Width="20" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="ContainsLibDir" Text="L" Width="20" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+        <TextBlock x:Name="ContainsLib" Text="l" Width="20" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+    </StackPanel>
+</UserControl>
