@@ -42,6 +42,7 @@ To use Library Manager you should define library pack files with configuration f
 ```
 
 `Lib` and `LibPath` can appear more than once inside `Library` or `Configuration` tags. There should be a `Configuration` tag for each supported configuration. `Lib` and `LibPath` may be omitted if the library is header only.
+`IncludePath` and `LibPath` can be absolute or relative to the current library pack file.
 
 Library pack files should be added in Tools->Options->Library Manager options page.
 ![Library Manager Options screenshot](https://raw.githubusercontent.com/cos-public/LibManager/master/doc/options.png)
