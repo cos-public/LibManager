@@ -1,0 +1,5 @@
+.gitignore
+.vs
+bin/
+obj/
+packages/
