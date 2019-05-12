@@ -1,6 +1,8 @@
 ### Not implemented ###
 * Removing libraries (Unuse button)
 * Verbose output
+* Predefined library defines (e. g. SPDLOG_FMT_EXTERNAL)
+* Library dependencies
 
 ### Overview ###
 Library Manager shows current library configuration state for all project configurations (e. g. Release|x64) and modifies Additional Include Directories, Additional Library Directories and Additional Dependencies with one click.
