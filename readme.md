@@ -41,7 +41,7 @@ To use Library Manager you should define library pack files with configuration f
 </LibraryPack>
 ```
 
-`Lib` and `LibPath` can appear more than once inside `Library` or `Configuration` tags. There should be a `Configuration` tag for each supported configuration. `Lib` and `LibPath` may be omitted if the library is header only.
+`Lib` and `LibPath` can appear more than once inside `Library` or `Condition` tags. There should be a `Condition` tag for each supported configuration. `Lib` and `LibPath` may be omitted if the library is header only.
 `IncludePath` and `LibPath` can be absolute or relative to the current library pack file.
 
 Library pack files should be added in Tools->Options->Library Manager options page.
@@ -50,7 +50,7 @@ Library pack files should be added in Tools->Options->Library Manager options pa
 To view current library configurations - right click on a project in solution explorer and choose 'Libraries...'
 ![Library Manager Dialog screenshot](https://raw.githubusercontent.com/cos-public/LibManager/master/doc/manager.png)
 
-`I L l` indicator show current library configuration state - Include Directory configured, Library Directory configured, Library Dependency configured respectively. Green - fully configured, Blue - partially configured (if a library has multiple Library Directories or Libraries), White - not configured. Indicator not visible - library has no `Configuration` tag for corresponding project configuration.
+`I L l` indicator show current library configuration state - Include Directory configured, Library Directory configured, Library Dependency configured respectively. Green - fully configured, Blue - partially configured (if a library has multiple Library Directories or Libraries), White - not configured. Indicator not visible - library has no `Condition` tag for the corresponding project configuration.
 
 Use `Use` button to modify project configuration to use a library. It will modify Additional Include Directories, Additional Library Directories and Additional Dependencies project properties with entries from library configuration xml file.
 
