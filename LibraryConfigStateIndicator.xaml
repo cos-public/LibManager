@@ -16,6 +16,9 @@
             <Setter Property="TextBlock.Background" Value="Blue" />
             <Setter Property="TextBlock.Foreground" Value="White" />
         </Style>
+        <Style x:Key="EmptyConfigurationStyle">
+            <Setter Property="TextBlock.Visibility" Value="Hidden" />
+        </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto">
         <TextBlock x:Name="ContainsIncludePath" Text="I" Width="20" TextAlignment="Center" FontWeight="Bold"></TextBlock>

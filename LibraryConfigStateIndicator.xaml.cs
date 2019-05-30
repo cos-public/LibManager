@@ -37,20 +37,26 @@ namespace LibManager
             ((LibraryConfigStateIndicator)d).StatePropertyChanged((LibraryManagerDialog.LibraryConfigState)e.NewValue);
         }
 
+        private Style GetStyleForConfigState(LibraryManagerDialog.LibraryConfigState.State state)
+        {
+            var all_configured_style = (FindResource("AllConfiguredStyle") as Style);
+            var partial_configured_style = (FindResource("PartialConfiguredStyle") as Style);
+            var empty_configuration_style = (FindResource("EmptyConfigurationStyle") as Style);
+
+            return state == LibraryManagerDialog.LibraryConfigState.State.All ? all_configured_style :
+                state == LibraryManagerDialog.LibraryConfigState.State.Partial ? partial_configured_style :
+                    state == LibraryManagerDialog.LibraryConfigState.State.Empty ? empty_configuration_style :
+                        null;
+        }
+
         private void StatePropertyChanged(LibraryManagerDialog.LibraryConfigState state)
         {
             if (state != null)
             {
                 this.Visibility = Visibility.Visible;
-                var all_configured_style = (FindResource("AllConfiguredStyle") as Style);
-                var partial_configured_style = (FindResource("PartialConfiguredStyle") as Style);
-                ContainsIncludePath.Style = state.ContainsIncludePath ? all_configured_style : null;
-                ContainsLibDir.Style = state.ContainsLibDir == LibraryManagerDialog.LibraryConfigState.State.All ? all_configured_style :
-                    state.ContainsLibDir == LibraryManagerDialog.LibraryConfigState.State.Partial ? partial_configured_style :
-                        null;
-                ContainsLib.Style = state.ContainsLib == LibraryManagerDialog.LibraryConfigState.State.All ? all_configured_style :
-                    state.ContainsLib == LibraryManagerDialog.LibraryConfigState.State.Partial ? partial_configured_style :
-                        null;
+                ContainsIncludePath.Style = GetStyleForConfigState(state.ContainsIncludePath);
+                ContainsLibDir.Style = GetStyleForConfigState(state.ContainsLibDir);
+                ContainsLib.Style = GetStyleForConfigState(state.ContainsLib);
             }
             else
             {

@@ -30,7 +30,7 @@ namespace LibManager
         public class LibraryConfigState
         {
             public enum State { All, Partial, None, Empty }; //None - not configured, Empty - no configuration
-            public bool ContainsIncludePath { get; set; } = false;
+            public State ContainsIncludePath { get; set; } = State.None;
             public State ContainsLibDir { get; set; } = State.None;
             public State ContainsLib { get; set; } = State.None;
             public override string ToString() {
@@ -115,7 +115,7 @@ namespace LibManager
 
             foreach (var e in _definitions.Definitions)
             {
-                Debug.Print("=== Checking library {0}", e.Name);
+                Debug.Print("\n=== Checking library {0}", e.Name);
                 var libpack_path = System.IO.Path.GetDirectoryName(e.PackFile);
                 Assumes.True(System.IO.Path.IsPathRooted(libpack_path));
                 Assumes.True(System.IO.Directory.Exists(libpack_path));
@@ -200,8 +200,11 @@ namespace LibManager
             LibraryListView.ItemsSource = LibraryStates;
         }
 
-        private bool ModifyIncludePath(VCCLCompilerTool compiler, string include_path, string project_path, string libpack_path, bool check_only = false)
+        private LibraryConfigState.State ModifyIncludePath(VCCLCompilerTool compiler, string include_path, string project_path, string libpack_path, bool check_only = false)
         {
+            if (include_path == null)
+                return LibraryConfigState.State.Empty;
+
             var full_include_path = GetAbsolutePath(include_path, libpack_path);
             var includes = new List<string>(SplitQuoted(";", compiler.AdditionalIncludeDirectories));
             var include_found = false;
@@ -221,7 +224,7 @@ namespace LibManager
                 compiler.AdditionalIncludeDirectories = String.Join(";", includes.ToArray());
             }
 
-            return include_found;
+            return include_found ? LibraryConfigState.State.All : LibraryConfigState.State.None;
         }
 
         private LibraryConfigState.State ModifyLibPath(VCLinkerTool linker, List<string> lib_dirs, string project_path, string libpack_path, bool check_only = false)
@@ -254,7 +257,7 @@ namespace LibManager
             if (lib_files.Count == 0)
                 return LibraryConfigState.State.Empty;
 
-            var lib_files_remaining = lib_files;
+            var lib_files_remaining = lib_files.GetRange(0, lib_files.Count);
             bool found = false;
 
             var project_libs = new List<string>(SplitQuoted(" ", linker.AdditionalDependencies));
